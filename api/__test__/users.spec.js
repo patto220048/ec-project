@@ -1,4 +1,4 @@
-import testController from "../src/controller/test.controller.js/index.js"
+import testController from "../src/controller/test.controller.js"
 
 const mockReq = {
 
@@ -9,6 +9,6 @@ const mockRes={
 
 describe('test1123', () => { 
     it('should return hello world', () => { 
-        testController.testCase
+        testController.testCase(mockReq,mockRes)
     })
  })
