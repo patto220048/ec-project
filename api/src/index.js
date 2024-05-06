@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import route from './route/index.js';
+import route from './routes/index.js';
 import database from './database/index.js';
 
 const app = express();
