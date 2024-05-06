@@ -1,7 +1,7 @@
-import testRoute from './test11.js'
+import authRoute from "./auth.routes.js"
 
 function route(app) {
-
-    app.use('/test', testRoute);
+    app.use('/api/auth', authRoute);
+ 
 }
 export default route;

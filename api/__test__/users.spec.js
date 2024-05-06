@@ -1,4 +1,4 @@
-import testController from '../src/controllers/test.controller.js';
+import testController from '../src/controller/test.controller.js';
 // const testController = require("../src/controller/test.controller.js")
 
 const mockReq = {};
