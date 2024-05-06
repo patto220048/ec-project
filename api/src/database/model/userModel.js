@@ -41,6 +41,9 @@ const UserModel = new Schema(
         history: {
             type: Array,
             default: []
+        },
+        refreshToken: {
+            type: String
         }
     },
     {
