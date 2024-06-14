@@ -1,4 +1,4 @@
-import { type } from 'doctrine';
+
 import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
@@ -7,6 +7,7 @@ const UserModel = new Schema(
     {
         name: {
             type: String,
+            required: true,
         },
         email: {
             type: String,
@@ -24,27 +25,26 @@ const UserModel = new Schema(
         avatar: {
             type: String,
         },
-        phoneNumber : {
+        phoneNumber: {
             type: Number,
         },
         addresses: [
             {
                 streets: {
-                    type: String
+                    type: String,
                 },
-                city:{
-                    type: String
+                city: {
+                    type: String,
                 },
             },
-            
         ],
         history: {
             type: Array,
-            default: []
+            default: [],
         },
         refreshToken: {
-            type: String
-        }
+            type: String,
+        },
     },
     {
         timestamps: true,

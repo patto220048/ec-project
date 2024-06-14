@@ -1,6 +1,6 @@
 import User from '../database/model/userModel.js';
-import { generateAccessToken, generateRefreshToken } from '../untils/generate-jwt.js';
-import handleError from '../untils/error/handleError.js';
+import { generateAccessToken, generateRefreshToken } from '../untils/generateJwt.js';
+import handleError from '../untils/handleError.js';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import jwt from 'jsonwebtoken';
@@ -58,7 +58,7 @@ class authController {
             return res.json(handleError(false, 500, error.message, 'Server error!!'));
         }
     }
-
+    // refresh token
     async refreshToken(req, res) {
         // lấy refresh token từ user
         const refreshToken = req.body.token;
@@ -91,18 +91,21 @@ class authController {
             return res.json(handleError(false, 500, error.message, 'Server error!!'));
         }
     }
-
+    // log out
     async logout(req, res) {
+        // kiểm tra  refreshToken khi log out
         const refreshToken = req.body.token;
         if (!refreshToken) return res.json(handleError(false, 500, 'Invalid refresh token!'));
         try {
+            // nếu đúng token thì đặt lại refreshToken = null
             const user = await User.findOneAndUpdate(
                 { refreshToken: refreshToken },
                 { $set: { refreshToken: null } },
                 { new: true },
             );
+            // logout thành công
             if (user) return res.status(201).json('Log out successfully!');
-            else return res.json(handleError(true, 200, 'You logged out successfully!'));
+            else return res.json(handleError(true, 200, 'You logged out!'));
         } catch (error) {
             return res.json(handleError(false, 500, error.message, 'Server error!!'));
         }

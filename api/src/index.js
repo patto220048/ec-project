@@ -9,10 +9,17 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 //app config
 app.use(cookieParser());
-app.use(morgan('combined'));
-app.use(express.json());
+app.use(morgan('tiny'));
+app.use(express.json());    
 app.use(express.urlencoded());
-//monggo database
+
+app.use(
+    cors({
+        origin: ' http://localhost:3000',
+        credentials: true,
+    }),
+);
+//monggo databases
 database.connect();
 // router
 route(app);
